@@ -1,0 +1,18 @@
+- content_for :content do
+  #flow
+    %canvas#fluo{ :width => 1150, :height => 700 }
+  = yield(:layout)
+      
+  :javascript  
+    //
+    // fluo
+  
+  
+    document.getElementById('fluo').noOuterBorder = true;
+    
+    Fluo.renderFlow(
+      'fluo', #{@route_process_state_tree}, { workitems: [ '#{@workitem.fei.expid}' ] });
+    
+    Fluo.crop('fluo');
+    
+=render :file => 'layouts/rails_bpm'

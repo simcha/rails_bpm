@@ -1,0 +1,21 @@
+
+%h1
+  = t '.title'
+
+#flow
+  %canvas#fluo{ :width => 200, :height => 200 }
+
+%pre#definition #{@definition.definition}
+
+.buttons
+  = link_to t('.back'), :action => :index
+  = button_to t('.launch'), processes_path(:definition => @definition.id)
+
+
+:javascript
+
+  document.getElementById('fluo').noOuterBorder = true;
+  
+  Fluo.renderFlow('fluo', #{Ruote::Reader.read(@definition.definition).to_json})
+  Fluo.crop('fluo');
+

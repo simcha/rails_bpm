@@ -1,0 +1,97 @@
+# See http://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
+
+en:
+
+  flash:
+    errors:
+      login_failed: login failed
+    notice:
+      proceeded: "workitem %{fei} proceeded"
+      launched: "process %{wfid} launched"
+
+  form:
+    id: id
+    task_regex: task regex
+
+  process:
+    wfid: wfid
+    size: size
+    position: position
+
+  workitem:
+    id: id
+    participant_name: participant
+    task: task
+
+  definition:
+    id: id
+    name: name
+    revision: revision
+
+  layouts:
+    rails_bpm:
+      logout: logout
+      tasks: tasks
+      processes: instances
+      definitions: new
+      ruote: ruote
+
+  sessions:
+    new:
+      login: login
+
+  forms:
+    index:
+      title: forms
+      new: new form
+      show: show
+    show:
+      title: form
+      template: template
+      form: form
+      data_in: data in
+      data_out: data out
+      render: render →
+      undo: undo
+      reset: reset
+      produce: produce ↓
+      submit: submit
+      cancel: cancel
+
+  processes:
+    index:
+      title: processes
+
+  tasks:
+    index:
+      title: title
+      participant_name: name
+      task: task
+      show: show
+    show:
+      title: Task form not provided
+      fields: fields
+      cancel: cancel
+      release: for everyone
+      take: for myself
+      save: save
+      proceed: proceed
+  
+  definitions:
+    index:
+      title: process definitions
+      show: show
+      launch: launch
+      edit: edit
+      new: new process definition
+    show:
+      title: process definition
+      back: back
+      launch: launch
+    edit:
+      title: process definition
+      editor: editor
+      textbox: textbox
+      cancel: cancel
+      submit: save
+

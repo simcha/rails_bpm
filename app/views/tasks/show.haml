@@ -1,0 +1,27 @@
+#flow
+  %canvas#fluo{ :width => 1150, :height => 700 }
+  
+%h1
+  = t '.title'
+
+#form
+
+  - form_tag ({:action => :update}, :method => :put) do
+
+    %div #{t('.fields') + ':'}
+    = text_area_tag 'workitem[fields]', Rufus::Json.encode(@workitem.fields), :rows => 10, :cols => 77
+
+    = task_buttons(@workitem)
+
+      
+:javascript  
+    //
+  // fluo
+
+
+  document.getElementById('fluo').noOuterBorder = true;
+  
+  Fluo.renderFlow(
+    'fluo', #{@route_process_state_tree}, { workitems: [ '#{@workitem.fei.expid}' ] });
+  
+  Fluo.crop('fluo');

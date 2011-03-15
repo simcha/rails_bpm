@@ -1,0 +1,26 @@
+h1. RailsBpm
+
+Rails BPM is a _proof_of_concept_ of Ruby on Rails plugin/engine for building Business Process Management solutions. It is based on "Route":http://ruote.rubyforge.org/ and "RouteKit":https://github.com/tosch/ruote-kit was created by extending "ruote-on-rails.":https://github.com/tosch/ruote-on-rails 
+
+Idea is to put your process into app/processes your tasks into app/controllers/tasks and app/views/tasks and participants into app/participants and let RailsBpm do the rest of the job. For now it is really implemented only to show haw can it be done it is far from complete.
+
+h2. Install
+
+Make new rails application and remove index.html file.
+ 
+Install the plugin by adding it to Gemfile:
+
+<pre><code>gem 'rails_bpm', :git => 'http://github.com/simcha/rails_bpm.git'
+</pre></code>
+
+And running
+
+<pre><code>bundle install
+
+rails generate rails_bpm:install
+
+rails generate rails_bpm:example
+</pre></code>
+
+
+Copyright (c) 2011 by simcha, released under the MIT license

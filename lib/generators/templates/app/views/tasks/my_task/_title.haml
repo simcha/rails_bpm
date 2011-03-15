@@ -1,0 +1,3 @@
+Review temperature in 
+- unless task_fields["stack"].blank?
+  = task_fields["stack"].collect{|s|s["room"]["name"]}.join(", ")

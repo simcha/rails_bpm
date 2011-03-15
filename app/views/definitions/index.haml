@@ -1,0 +1,28 @@
+
+%h1
+  = t '.title'
+
+%table.list
+
+  %thead
+    %td
+      = t 'definition.id'
+    %td
+      = t 'definition.name'
+    %td
+      = t 'definition.revision'
+    %td
+
+  - @definitions.each do |definition|
+    %tr
+      %td
+        = definition.id
+      %td
+        = definition.name
+      %td
+        = definition.revision
+      %td
+        .buttons
+          = link_to t('.show'), definition_path(definition.id)
+          = button_to t('.launch'), processes_path(:definition => definition.id) 
+

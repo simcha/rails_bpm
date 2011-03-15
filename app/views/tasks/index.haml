@@ -1,0 +1,30 @@
+
+%table.list
+
+  %thead
+    %td 
+      = t '.title'
+    %td
+      = t '.participant_name'
+    %td
+      = t '.task'
+    %td
+
+  - @workitems.each do |workitem|
+    %tr
+      %td
+        - unless workitem.params['task'].blank?
+          - begin
+            = render :partial => "tasks/#{workitem.params['task']}/title", 
+            :locals => { :task_fields => workitem.fields, :workitem => workitem} 
+          - rescue ActionView::MissingTemplate
+            = workitem.params['task']
+      %td
+        = workitem.participant_name
+      %td
+        = workitem.params['task']
+      %td
+        - unless workitem.params['task'].blank?
+          = link_to t('.show'), :controller => "tasks/"+workitem.params['task'],:action => "show", :id => workitem.fei.sid
+        -else
+          = link_to t('.show'), task_path(workitem)
