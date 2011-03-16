@@ -6,7 +6,7 @@
 
 #form
 
-  - form_tag ({:action => :update}, :method => :put) do
+  -form_tag({:action => :update}, :method => :put) do
 
     %div #{t('.fields') + ':'}
     = text_area_tag 'workitem[fields]', Rufus::Json.encode(@workitem.fields), :rows => 10, :cols => 77

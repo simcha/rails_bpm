@@ -1,0 +1,11 @@
+#form
+
+  - semantic_form_for :rooms, :url => {:action => :update}, :html => {:method => 'PUT'} do |f|
+    = f.semantic_fields_for :room_1,  @room_1 do |f1|
+      = f1.inputs :name, :temperature
+    = f.semantic_fields_for :room_2,  @room_2 do |f2|
+      = f2.inputs :name, :temperature
+    = f.input :accepted, :as => :boolean
+   
+    = task_buttons(@workitem)
+ 
