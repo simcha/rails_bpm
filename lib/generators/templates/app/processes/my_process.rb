@@ -26,6 +26,6 @@ class MyProces < RailsBpm::Process
   end
   register_participant :select_root_for_measurement do |workitem|
     workitem.fields['room'] ||= {}
-    workitem.fields['room']['name'] = "Room No #{Random.rand(10)}"
+    workitem.fields['room']['name'] = "Room No #{rand(10)}"
   end
 end
