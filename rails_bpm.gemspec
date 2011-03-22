@@ -8,40 +8,56 @@ Gem::Specification.new do |s|
   s.version = "0.1.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
-  s.date = %q{2011-03-14}
+  s.date = %q{2011-03-22}
   s.extra_rdoc_files = [
-    "README"
+    "README.textile"
   ]
   s.files = [
     "app/controllers/definitions_controller.rb",
     "app/controllers/processes_controller.rb",
     "app/controllers/rails_bpm_controller.rb",
     "app/controllers/sessions_controller.rb",
+    "app/controllers/task_form_controller.rb",
     "app/controllers/tasks_controller.rb",
     "app/helpers/application_helper.rb",
     "app/helpers/tasks_helper.rb",
     "app/models/user.rb",
     "app/models/workitem.rb",
-    "app/processes/my_process.rb",
     "app/views/definitions/index.haml",
     "app/views/definitions/show.haml",
     "app/views/forms/index.haml",
     "app/views/forms/show.haml",
-    "app/views/layouts/application.haml",
+    "app/views/layouts/rails_bpm.haml",
     "app/views/layouts/tasks_base.haml",
     "app/views/processes/index.haml",
     "app/views/sessions/new.haml",
     "app/views/shared/_flash.haml",
     "app/views/tasks/_buttons.haml",
-    "app/views/tasks/collect_data/show.haml",
+    "app/views/tasks/_search_results.haml",
     "app/views/tasks/index.haml",
     "app/views/tasks/show.haml",
     "config/locales/en.yml",
     "config/routes.rb",
-    "lib/generators/USAGE",
+    "lib/generators/rails_bpm/example_generator.rb",
     "lib/generators/rails_bpm/install_generator.rb",
-    "lib/generators/rails_bpm_generator.rb",
+    "lib/generators/templates/app/controllers/tasks/collect_data_controller.rb",
+    "lib/generators/templates/app/controllers/tasks/review_data_controller.rb",
+    "lib/generators/templates/app/models/room.rb",
+    "lib/generators/templates/app/participants/publish_participant.rb",
+    "lib/generators/templates/app/processes/my_process.rb",
+    "lib/generators/templates/app/views/tasks/collect_data/_title.haml",
+    "lib/generators/templates/app/views/tasks/collect_data/show.haml",
+    "lib/generators/templates/app/views/tasks/review_data/_title.haml",
+    "lib/generators/templates/app/views/tasks/review_data/show.haml",
     "lib/generators/templates/password",
+    "lib/generators/templates/public/images/rails.png",
+    "lib/generators/templates/public/images/ruote.png",
+    "lib/generators/templates/public/images/spinner.gif",
+    "lib/generators/templates/public/javascripts/rails_bpm.js",
+    "lib/generators/templates/public/stylesheets/formtastic.css",
+    "lib/generators/templates/public/stylesheets/formtastic_changes.css",
+    "lib/generators/templates/public/stylesheets/rails_bpm.css",
+    "lib/generators/templates/public/stylesheets/reset.css",
     "lib/rack/ruote_admin_only.rb",
     "lib/rails_bpm.rb",
     "lib/rails_bpm/model.rb",
@@ -66,6 +82,7 @@ Gem::Specification.new do |s|
       s.add_runtime_dependency(%q<ruote>, [">= 0"])
       s.add_runtime_dependency(%q<ruote-kit>, [">= 0"])
       s.add_runtime_dependency(%q<bcrypt-ruby>, [">= 0"])
+      s.add_runtime_dependency(%q<will_paginate>, ["~> 3.0.pre2"])
     else
       s.add_dependency(%q<haml>, [">= 0"])
       s.add_dependency(%q<formtastic>, ["= 1.2.3"])
@@ -75,6 +92,7 @@ Gem::Specification.new do |s|
       s.add_dependency(%q<ruote>, [">= 0"])
       s.add_dependency(%q<ruote-kit>, [">= 0"])
       s.add_dependency(%q<bcrypt-ruby>, [">= 0"])
+      s.add_dependency(%q<will_paginate>, ["~> 3.0.pre2"])
     end
   else
     s.add_dependency(%q<haml>, [">= 0"])
@@ -85,6 +103,7 @@ Gem::Specification.new do |s|
     s.add_dependency(%q<ruote>, [">= 0"])
     s.add_dependency(%q<ruote-kit>, [">= 0"])
     s.add_dependency(%q<bcrypt-ruby>, [">= 0"])
+    s.add_dependency(%q<will_paginate>, ["~> 3.0.pre2"])
   end
 end
 
