@@ -1,6 +1,8 @@
 
 class RailsBpmController < ActionController::Base
-
+  
+  ITEMS_PER_PAGE = 10
+  
   protect_from_forgery
 
   before_filter :login_required

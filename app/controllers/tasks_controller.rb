@@ -4,7 +4,8 @@ class TasksController < TaskFormController
 
     current_page = 1
     current_page = params[:page].to_f unless params[:page].nil?
-    per_page = 10 #FIXME 
+    per_page = ITEMS_PER_PAGE 
+    
     user_or_group = params[:group]
     user_or_group ||= session[:username]
 

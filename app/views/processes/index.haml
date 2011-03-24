@@ -2,8 +2,8 @@
 %h1
   = t '.title'
 
+= will_paginate @workitems
 %table.list
-
   %thead
     %td
       = t 'process.wfid'
@@ -22,4 +22,4 @@
         - process.position.each do |pos|
           - fei, pname, info = pos
           = "#{pname} #{info['task']}"
-
+= will_paginate @workitems

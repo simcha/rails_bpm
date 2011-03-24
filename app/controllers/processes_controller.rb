@@ -5,8 +5,19 @@
 class ProcessesController < RailsBpmController
 
   def index
+    current_page = 1
+    current_page = params[:page].to_f unless params[:page].nil?
+    per_page = ITEMS_PER_PAGE 
+    
+    @processes = WillPaginate::Collection.create(current_page, per_page) do |pager|
 
-    @processes = RuoteKit.engine.processes
+      result = RuoteKit.engine.processes({:skip => pager.offset, :limit => pager.per_page})
+      pager.replace(result)
+    
+      unless pager.total_entries
+        pager.total_entries = RuoteKit.engine.processes({:count => true})
+      end
+    end
   end
 
   def create
