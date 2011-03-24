@@ -7,6 +7,7 @@ en:
       login_failed: login failed
     notice:
       proceeded: "workitem %{fei} proceeded"
+      saved: "workitem %{fei} saved"
       launched: "process %{wfid} launched"
 
   form:
@@ -70,7 +71,10 @@ en:
       title: title
       participant_name: name
       task: task
-      show: show
+      edit: edit
+      claim: claim
+      unclaim: unclaim
+      claim&edit: claim&edit
     show:
       title: Task form not provided
       fields: fields

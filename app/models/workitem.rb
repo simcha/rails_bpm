@@ -26,7 +26,7 @@ class Ruote::Workitem
     return count
   end
 
-  def self.for_user(username,opts, all_users = false)
+  def self.for_user(username, opts, all_users = false)
 
     user = User.find(username)
 

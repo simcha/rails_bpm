@@ -1,6 +1,6 @@
 class Tasks::CollectDataController < TasksController::Base
 
-  def show
+  def edit
     @room = Room.new(@task_fields["room"])
   end
   def update

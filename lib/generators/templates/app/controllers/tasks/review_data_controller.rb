@@ -1,6 +1,6 @@
 class Tasks::ReviewDataController < TasksController::Base
 
-  def show
+  def edit
     @room_1 = Room.new(@task_fields["stack"][0]["room"])
     @room_2 = Room.new(@task_fields["stack"][1]["room"])
   end

@@ -26,7 +26,12 @@
           = workitem.params['task']
         %td
           - unless workitem.params['task'].blank?
-            = link_to t('.show'), :controller => "tasks/"+workitem.params['task'],:action => "show", :id => workitem.fei.sid
+            - if workitem.participant_name == session[:username]
+              = link_to t('.edit'), :controller => "tasks/"+workitem.params['task'],:action => "edit", :id => workitem.fei.sid
+              = link_to t('.unclaim'), :controller => "tasks/"+workitem.params['task'],:action => "unclaim", :id => workitem.fei.sid
+            - else
+              = link_to t('.claim'), :controller => "tasks/"+workitem.params['task'],:action => "claim", :id => workitem.fei.sid
+              = link_to t('.claim&edit'), :controller => "tasks/"+workitem.params['task'],:action => "claim", :id => workitem.fei.sid, :edit =>true
           -else
             = link_to t('.show'), task_path(workitem)
   = will_paginate @workitems

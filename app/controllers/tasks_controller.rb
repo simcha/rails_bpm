@@ -8,27 +8,31 @@ class TasksController < TaskFormController
     
     user_or_group = params[:group]
     user_or_group ||= session[:username]
-
-    @workitems = WillPaginate::Collection.create(current_page, per_page) do |pager|
-
-      result = Ruote::Workitem.for_user(user_or_group,{:skip => pager.offset, :limit => pager.per_page},params[:all_users])
-      pager.replace(result)
-    
-      unless pager.total_entries
-        pager.total_entries = Ruote::Workitem.for_user_count(user_or_group,{},params[:all_users])
+    unless params[:group].blank? or params[:group] == "anyone" or User.find(session[:username]).groups.include? user_or_group
+        render :text => "No access", :status => :forbidden
+      else 
+  
+      @workitems = WillPaginate::Collection.create(current_page, per_page) do |pager|
+  
+        result = Ruote::Workitem.for_user(user_or_group,{:skip => pager.offset, :limit => pager.per_page},params[:all_users])
+        pager.replace(result)
+      
+        unless pager.total_entries
+          pager.total_entries = Ruote::Workitem.for_user_count(user_or_group,{},params[:all_users])
+        end
+      end
+      
+      respond_to do |format|
+        format.html
+        format.js {
+          render :update do |page|
+            page.replace 'results', :partial => 'search_results'
+          end
+        }
       end
     end
-    
-    respond_to do |format|
-      format.html
-      format.js {
-        render :update do |page|
-          page.replace 'results', :partial => 'search_results'
-        end
-      }
-    end
   end
-  def show
+  def edit
 
     @workitem =
       RuoteKit.storage_participant[params[:id]]

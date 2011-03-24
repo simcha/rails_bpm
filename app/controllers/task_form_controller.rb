@@ -13,22 +13,30 @@ class TaskFormController < RailsBpmController
     if params[:proceed_subaction]
 
       RuoteKit.storage_participant.reply(@workitem)
-
       flash[:notice] = I18n.t('flash.notice.proceeded', :fei => @workitem.fei.sid)
     else
-
-      if params[:release_subaction]
-        @workitem.participant_name = 'anyone'
-      elsif params[:take_subaction]
-        @workitem.participant_name = session[:username]
-      end
-
+      
       RuoteKit.storage_participant.update(@workitem)
+      flash[:notice] = I18n.t('flash.notice.saved', :fei => @workitem.fei.sid)
     end
 
     redirect_to :controller => :tasks, :action => :index
   end
-
+  def claim
+    @workitem.fields["orginal_participant"] = @workitem.participant_name
+    @workitem.participant_name = session[:username]
+    RuoteKit.storage_participant.update(@workitem)
+    if params[:edit]
+      redirect_to :action => :edit
+    else
+      redirect_to :controller => :tasks, :action => :index
+    end
+  end
+  def unclaim
+    @workitem.participant_name = @workitem.fields["orginal_participant"]
+    RuoteKit.storage_participant.update(@workitem)
+    redirect_to :controller => :tasks, :action => :index
+  end
   private
   
   def get_process_data

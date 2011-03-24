@@ -2,10 +2,5 @@
 
   = link_to t('tasks.show.cancel'), :action => :index
 
-  - if workitem.participant_name != 'anyone'
-    = submit_tag t('tasks.show.release'), :name => 'release_subaction'
-  - else
-    = submit_tag t('tasks.show.take'), :name => 'take_subaction'
-
   = submit_tag t('tasks.show.save'), :name => 'save_subaction'
   = submit_tag t('tasks.show.proceed'), :name => 'proceed_subaction'
