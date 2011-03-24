@@ -35,7 +35,7 @@ class TaskFormController < RailsBpmController
     @workitem =
       RuoteKit.storage_participant[params[:id]]
     @task_fields = @workitem.fields
-    @route_process_state_tree =
+    @ruote_process_state_tree =
       Rufus::Json.encode(RuoteKit.engine.process(@workitem.wfid).current_tree)
   end
 end

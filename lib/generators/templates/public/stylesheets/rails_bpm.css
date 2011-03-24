@@ -171,6 +171,20 @@ div.nav {
 	text-shadow:  1px 1px 0 rgba(255,255,255,0.75);
 	font-weight: bold;
 }
+.task_nav a{
+	display: block;
+	padding: 0 18px;
+	color: #7f8c95;
+	text-transform: capitalize;
+	font-size: 14px;
+	line-height: 2.66em;
+	text-shadow:  1px 1px 0 rgba(255,255,255,0.75);
+}
+.task_nav a:link, .nav a:visited {
+	padding: 0 32px;
+	font-size: 12px;
+}
+
 .nav a:hover {
 	color: #3d90e3;
 	text-decoration: none;

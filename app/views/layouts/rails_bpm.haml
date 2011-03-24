@@ -5,7 +5,7 @@
 
     %meta( http-equiv="Content-Type" content="text/html; charset=UTF-8" )
 
-    %title rails-bpm
+    %title Rails BPM
 
     %link( href='/images/favicon.png' type='image/png' rel='icon' )
     = stylesheet_link_tag 'reset', 'rails_bpm', 'formtastic', 'formtastic_changes'
@@ -14,6 +14,7 @@
         .container { display: table; height: 100%; }
 
     %script{ :src => '/_ruote/javascripts/ruote-fluo.js' }
+    %script{ :src => '/javascripts/rails_bpm.js' }
 
 
   %body
@@ -31,7 +32,20 @@
             %li
               = link_to t('.definitions'), definitions_path
             %li
-              = link_to t('.tasks'), tasks_path
+              .task_nav
+                %a  #{t('.tasks')}
+                
+                %ul
+                  %li
+                    = link_to  t('.my_tasks'), tasks_path
+                  - user = User.find(session[:username])
+                  - user.groups.each do |group|
+                    %li
+                      = link_to  group, tasks_path({:group => group})
+                  %li 
+                    = link_to  t('.anyone'), tasks_path({:group => 'anyone'})
+                  %li 
+                    = link_to  t('.all'), tasks_path({:all_users => true}) if user.admin?
             %li
               = link_to t('.processes'), processes_path
             - if User.admin?(session[:username])

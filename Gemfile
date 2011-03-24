@@ -19,5 +19,6 @@ gem 'ruote', :git => 'http://github.com/jmettraux/ruote.git'
 gem 'ruote-kit', :git => 'http://github.com/tosch/ruote-kit.git'
 
 gem 'bcrypt-ruby'
+gem "will_paginate", "~> 3.0.pre2"
   # for app/models/user.rb
 

@@ -2,7 +2,32 @@ class TasksController < TaskFormController
   
   def index
 
-    @workitems = Ruote::Workitem.for_user(session[:username])
+    current_page = 1
+    current_page = params[:page].to_f unless params[:page].nil?
+    per_page = 10 #FIXME 
+    
+    @workitems = WillPaginate::Collection.create(current_page, per_page) do |pager|
+      user_or_group = params[:group]
+      user_or_group ||= session[:username]
+      
+      result = Ruote::Workitem.for_user(user_or_group,{:skip => pager.offset, :limit => pager.per_page},params[:all_users])
+      pager.replace(result)
+    
+      unless pager.total_entries
+        pager.total_entries = Ruote::Workitem.for_user_count(user_or_group,{},params[:all_users])
+      end
+    end
+    
+    respond_to do |format|
+      format.html
+      format.js {
+        render :update do |page|
+          # 'page.replace' will replace full "results" block...works for this example
+          # 'page.replace_html' will replace "results" inner html...useful elsewhere
+          page.replace 'results', :partial => 'search_results'
+        end
+      }
+    end
   end
   def show
 

@@ -4,6 +4,7 @@ require 'rails_bpm/process'
 require 'rails_bpm/model'
 require 'rails_bpm/participant'
 require 'formtastic'
+require 'will_paginate'
 
 module RailsBpm
   class Engine < Rails::Engine

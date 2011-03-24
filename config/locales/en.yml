@@ -32,6 +32,9 @@ en:
     rails_bpm:
       logout: logout
       tasks: tasks
+      my_tasks: my
+      anyone: anyone
+      all: all
       processes: instances
       definitions: new
       ruote: ruote
@@ -63,7 +66,7 @@ en:
       title: processes
 
   tasks:
-    index:
+    search_results:
       title: title
       participant_name: name
       task: task
