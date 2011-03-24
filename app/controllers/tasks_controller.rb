@@ -9,8 +9,8 @@ class TasksController < TaskFormController
     user_or_group ||= session[:username]
 
     @workitems = WillPaginate::Collection.create(current_page, per_page) do |pager|
-      #FIXME remove +1 when ruote is fixed
-      result = Ruote::Workitem.for_user(user_or_group,{:skip => pager.offset, :limit => pager.per_page+1},params[:all_users])
+
+      result = Ruote::Workitem.for_user(user_or_group,{:skip => pager.offset, :limit => pager.per_page},params[:all_users])
       pager.replace(result)
     
       unless pager.total_entries

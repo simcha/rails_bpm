@@ -32,14 +32,10 @@ class Ruote::Workitem
 
     return RuoteKit.engine.storage_participant.query(opts) if all_users and user.admin?
 
-    # note : ruote 2.1.12 should make it possible to write
-    #
-    #   RuoteKit.engine.storage_participant.by_participant(
-    #     [ username, user.groups, 'anyone' ].flatten)
-    #
-    # directly.
     opts[:participant_name] = username
-    RuoteKit.engine.storage_participant.query(opts)
+    #FIXME remove when fixed in ruote
+    limit = opts.delete :limit
+    RuoteKit.engine.storage_participant.query(opts)[0,limit]
   end
 
   #--
