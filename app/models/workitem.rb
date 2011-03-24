@@ -19,7 +19,7 @@ class Ruote::Workitem
   def self.for_user_count(username,opts, all_users = false)
     user = User.find(username)
     opts[:count] = true
-    return RuoteKit.engine.storage_participant.all(opts) if all_users and user.admin?
+    return RuoteKit.engine.storage_participant.query(opts) if all_users and user.admin?
     
     opts[:participant_name] = username
     count = RuoteKit.engine.storage_participant.query(opts)
@@ -30,7 +30,7 @@ class Ruote::Workitem
 
     user = User.find(username)
 
-    return RuoteKit.engine.storage_participant.all(opts) if all_users and user.admin?
+    return RuoteKit.engine.storage_participant.query(opts) if all_users and user.admin?
 
     # note : ruote 2.1.12 should make it possible to write
     #
@@ -38,8 +38,8 @@ class Ruote::Workitem
     #     [ username, user.groups, 'anyone' ].flatten)
     #
     # directly.
-
-    RuoteKit.engine.storage_participant.by_participant(username,opts)
+    opts[:participant_name] = username
+    RuoteKit.engine.storage_participant.query(opts)
   end
 
   #--
