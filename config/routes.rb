@@ -27,6 +27,6 @@ Rails::Application.routes.draw do
   
   match ':controller/:action/:id'
   match ':controller/:action'
-  match 'tasks/*path/:id' => 'tasks#show'
+  match 'tasks/*path/:id' => 'tasks#edit'
 end
 
