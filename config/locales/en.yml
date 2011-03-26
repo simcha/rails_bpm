@@ -75,7 +75,7 @@ en:
       claim: claim
       unclaim: unclaim
       claim&edit: claim&edit
-    show:
+    edit:
       title: Task form not provided
       fields: fields
       cancel: cancel
@@ -83,6 +83,11 @@ en:
       take: for myself
       save: save
       proceed: proceed
+      answer: 
+        "yes": "yes"
+        "no": "no"
+        accept: accept
+        reject: reject
   
   definitions:
     index:

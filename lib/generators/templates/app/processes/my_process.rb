@@ -8,8 +8,8 @@ class MyProces < RailsBpm::Process
         alice :task => "collect_data"
       end
       measurements_compare 
-      john :task => "review_data", :if => "${measurements_not_same}"
-      publish :if => "${accepted}"
+      john :task => "review_data", :unless => "${data_same}"
+      publish :if => "'${answer}' == accept or ${data_same}"
     end
   end
   register_participant :measurements_compare do |workitem|
@@ -17,11 +17,9 @@ class MyProces < RailsBpm::Process
     room_2 = Room.new workitem.fields['stack'][1]['room']
     if room_1.temperature != room_2.temperature ||
         room_1.name != room_2.name 
-      workitem.fields['measurements_not_same'] = true
-      workitem.fields['accepted'] = false
+      workitem.fields['data_same'] = false
     else
-      workitem.fields['measurements_not_same'] = false
-      workitem.fields['accepted'] = true
+      workitem.fields['data_same'] = true    
     end
   end
   register_participant :select_root_for_measurement do |workitem|

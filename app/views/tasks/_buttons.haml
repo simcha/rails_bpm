@@ -1,6 +1,10 @@
 .buttons
 
-  = link_to t('tasks.show.cancel'), :action => :index
+  = link_to t('tasks.edit.cancel'), :action => :index
 
-  = submit_tag t('tasks.show.save'), :name => 'save_subaction'
-  = submit_tag t('tasks.show.proceed'), :name => 'proceed_subaction'
+  = submit_tag t('tasks.edit.save'), :name => 'save_subaction'
+  - if answers.blank?
+    = submit_tag t('tasks.edit.proceed'), :name => 'proceed_subaction'
+  - else
+    - answers.each do |answer|
+      = submit_tag t("tasks.edit.answer.#{answer}"), :name => "proceed_subaction/#{answer_var}/#{answer}"

@@ -12,12 +12,21 @@ class TaskFormController < RailsBpmController
 
     if params[:proceed_subaction]
 
-      RuoteKit.storage_participant.reply(@workitem)
+      RuoteKit.storage_participant.proceed(@workitem)
       flash[:notice] = I18n.t('flash.notice.proceeded', :fei => @workitem.fei.sid)
-    else
+    elsif params[:save_subaction]
       
       RuoteKit.storage_participant.update(@workitem)
       flash[:notice] = I18n.t('flash.notice.saved', :fei => @workitem.fei.sid)
+    else
+      s = params.select{|k,v| k.to_s =~ /^proceed_subaction.*/}.keys.first.to_s
+      regexp = /proceed_subaction\/(.*)\/(.*)/
+      answer_var = s[regexp,1]
+      answer = s[regexp,2]
+      @workitem.fields[answer_var] = answer
+      
+      RuoteKit.storage_participant.proceed(@workitem)
+      flash[:notice] = I18n.t('flash.notice.proceeded', :fei => @workitem.fei.sid)
     end
 
     redirect_to :controller => :tasks, :action => :index
