@@ -5,7 +5,6 @@
       = f1.inputs :name, :temperature
     = f.semantic_fields_for :room_2,  @room_2 do |f2|
       = f2.inputs :name, :temperature
-    = f.input :accepted, :as => :boolean
    
     = task_buttons(:answers => [:accept,:reject])
  
